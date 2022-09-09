@@ -9,7 +9,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/Kapusta/">
+      <BrowserRouter basename="/finance-manager/">
         <App />
       </BrowserRouter>
     </Provider>
