@@ -1,6 +1,69 @@
 .container {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  background-color: #aaaaaa;
+    position: fixed;
+    width: calc(100% - 40px);
+    height: 56px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    background-color: var(--bg-color);
+    z-index: 100;
+}
+
+@media screen and (min-width: 480px) {
+    .container {
+        width: calc(var(--mobile) - 40px);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: calc(var(--tablet) - 64px);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: calc(var(--desktop) - 32px);
+    }
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 50%;
+    color: #52555f;
+    background-color: var(--avatar-bg-color);
+    text-transform: uppercase;
+}
+
+.userThumb {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.thumb {
+    display: flex;
+    gap: 20px;
+    color: var(--text-color-four);
+    align-items: center;
+}
+
+.line {
+    width: 0;
+    height: 36px;
+    border-left: 1px solid var(--separate-line-color);
+}
+
+.button {
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
 }

@@ -1,0 +1,59 @@
+.hero {
+    padding-top: 80px;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 40px;
+    text-align: center;
+}
+
+.sign {
+    position: relative;
+}
+
+.sign::before {
+    content: '';
+    position: absolute;
+    bottom: 0.77em;
+    left: 42%;
+    width: 0;
+    height: 0.15em;
+    border: 0.05em solid;
+}
+
+.sign::after {
+    content: '';
+    position: absolute;
+    bottom: 0.12em;
+    left: 42%;
+    width: 0;
+    height: 0.15em;
+    border: 0.05em solid;
+}
+
+.slogan {
+    margin: 0 10px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--text-color-four);
+}
+
+@media screen and (min-width: 768px) {
+    .title {
+        font-size: 66px;
+    }
+
+    .slogan {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .title {
+        font-size: 102px;
+    }
+}
