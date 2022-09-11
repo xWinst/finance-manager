@@ -1,30 +1,32 @@
 .container {
     position: fixed;
-    width: calc(100% - 40px);
+    width: 100%;
     height: 56px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 10px 20px;
     background-color: var(--bg-color);
     z-index: 100;
 }
 
 @media screen and (min-width: 480px) {
     .container {
-        width: calc(var(--mobile) - 40px);
+        width: var(--mobile);
     }
 }
 
 @media screen and (min-width: 768px) {
     .container {
-        width: calc(var(--tablet) - 64px);
+        width: var(--tablet);
+        padding: 10px 32px;
     }
 }
 
 @media screen and (min-width: 1280px) {
     .container {
-        width: calc(var(--desktop) - 32px);
+        width: var(--desktop);
+        padding: 10px 16px;
     }
 }
 
@@ -66,4 +68,8 @@
     border: none;
     cursor: pointer;
     color: inherit;
+}
+
+s.exit {
+    cursor: pointer;
 }
