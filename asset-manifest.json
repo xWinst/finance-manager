@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/finance-manager/static/css/main.076c1d25.css",
-    "main.js": "/finance-manager/static/js/main.6449bfbb.js",
+    "main.js": "/finance-manager/static/js/main.f1fc5950.js",
     "static/media/icons.svg": "/finance-manager/static/media/icons.5797bbb34ba91cc792c88aedc0babfa4.svg",
     "index.html": "/finance-manager/index.html",
     "main.076c1d25.css.map": "/finance-manager/static/css/main.076c1d25.css.map",
-    "main.6449bfbb.js.map": "/finance-manager/static/js/main.6449bfbb.js.map"
+    "main.f1fc5950.js.map": "/finance-manager/static/js/main.f1fc5950.js.map"
   },
   "entrypoints": [
     "static/css/main.076c1d25.css",
-    "static/js/main.6449bfbb.js"
+    "static/js/main.f1fc5950.js"
   ]
 }
