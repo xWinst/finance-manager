@@ -40,6 +40,9 @@ const LoginForm = () => {
                     onClick={loginWithGoogle}
                 />
             </div>
+            <a href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&client_id=665888736356-aq6fvfmau6mupt4nfbms5tfch0u2698i.apps.googleusercontent.com&prompt=consent&redirect_uri=https://kapusta-backend.goit.global/auth/google-redirect&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile">
+                google
+            </a>
             <p>Or log in using an email and password, after registering:</p>
             <label className={s.label}>
                 <span className={s.label__text}>Email</span>

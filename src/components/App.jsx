@@ -2,7 +2,7 @@ import { Suspense, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Home, Expenses, Income, Reports, PageNotFound } from 'pages';
-import { Header, Loader } from 'components';
+import { Header, Loader, Service } from 'components';
 import { refresh, getUser } from 'redux/operations';
 
 export const App = () => {
@@ -25,9 +25,13 @@ export const App = () => {
             <main className="main">
                 <Suspense fallback={<Loader />}>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Service />} />
+                        <Route path="finance-manager" element={<Home />} />
                         <Route path="expenses" element={<Expenses />} />
-                        <Route path="income" element={<Income />} />
+                        <Route
+                            path="finance-manager/income"
+                            element={<Income />}
+                        />
                         <Route path="reports" element={<Reports />} />
                         <Route path="*" element={<PageNotFound />} />
                     </Routes>

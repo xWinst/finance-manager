@@ -38,6 +38,7 @@ export const logIn = createAsyncThunk(
 export const googleAuth = createAsyncThunk(
     'auth/google',
     async (_, { rejectWithValue }) => {
+        // axios.defaults.headers.common['Access-Control-Allow-Origin'] = *;
         try {
             const { data } = await axios.get('/auth/google');
             setToken(data.accessToken);
