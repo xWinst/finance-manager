@@ -1,21 +1,19 @@
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@moeindana/google-oauth';
 import { LoginForm } from 'components';
 import s from '../index.module.css';
 
 const Home = () => {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-
-    return isLoggedIn ? (
-        <Navigate to="/expenses" />
-    ) : (
+    return (
         <section className={s.hero}>
-            <div className={s.title}>
-                Kapu<span className={s.sign}>s</span>ta{' '}
-                {/* <span className={s.signn}>$</span> */}
+            <div className={s.thumb}>
+                <div className={s.title}>
+                    Kapu<span className={s.sign}>s</span>ta{' '}
+                </div>
+                <h1 className={s.slogan}>smart fifance</h1>
             </div>
-            <h1 className={s.slogan}>smart fifance</h1>
-            <LoginForm />
+            <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+                <LoginForm />
+            </GoogleOAuthProvider>
         </section>
     );
 };

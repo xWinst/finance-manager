@@ -1,61 +1,119 @@
-// import { createSlice } from '@reduxjs/toolkit';
-// import message from 'helpers/Message';
-// import { register, logIn, googleAuth, logOut, refresh } from './operations';
-// // import {  } from './actions';
+import { createSlice } from '@reduxjs/toolkit';
+import message from 'helpers/Message';
+import { registration, logIn, logOut, refresh, getUser } from './operations';
+// import {  } from './actions';
 
-// const initalState = {
-//     email: null,
-//     id: null,
-//     isLoading: false,
-//     error: null,
-//     isLoggedIn: false,
-//     accessToken: null,
-//     refreshToken: null,
-//     sid: null,
-//     userData: null,
-// };
+const initialState = {
+    // email: null,
+    // id: null,
+    isLoading: false,
+    // error: null,
+    isLoggedIn: false,
+    // accessToken: null, /////////////
+    refreshToken: null,
+    sid: null,
+    userData: null,
+    // canLogin: false,
+};
 
-// const authSlice = createSlice({
-//     name: 'auth',
-//     initalState,
-//     extraReducers: {
-//         [register.pending]: (state, action) => {
-//             console.log('isLoading: ', state.isLoading);
-//             state.isLoading = true;
-//             state.error = '';
-//         },
+const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    extraReducers: {
+        [registration.pending]: state => {
+            state.isLoading = true;
+        },
 
-//         [register.fulfilled]: (state, action) => {
-//             console.log('action F: ', action);
-//             state.email = action.payload.email;
-//             state.id = action.payload.id;
-//             state.isLoggedIn = true;
-//         },
+        [registration.fulfilled]: state => {
+            state.canLogin = true;
+            state.isLoading = false;
+        },
 
-//         [register.rejected]: (state, action) => {
-//             console.log('action R: ', action);
-//             message.error('Registration error', `${action.error}`, 'Ok');
-//         },
+        [registration.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('Registration error', `${action.payload.message}`, 'Ok');
+        },
 
-//         [logIn.pending]: (state, action) => {
-//             state.isLoading = true;
-//             state.error = '';
-//         },
+        [logIn.pending]: state => {
+            state.isLoading = true;
+        },
 
-//         [logIn.fulfilled]: (state, action) => {
-//             console.log('action LF: ', action);
-//             state.accessToken = action.payload.accessToken;
-//             state.refreshToken = action.payload.refreshToken;
-//             state.sid = action.payload.sid;
-//             state.userData = action.payload.userData;
-//             state.isLoggedIn = true;
-//         },
+        [logIn.fulfilled]: (state, action) => {
+            // state.accessToken = action.payload.accessToken; /////////////
+            state.refreshToken = action.payload.refreshToken;
+            state.sid = action.payload.sid;
+            state.userData = action.payload.userData;
+            state.isLoggedIn = true;
+            state.canLogin = false;
+            state.isLoading = false;
+        },
 
-//         [logIn.rejected]: (state, action) => {
-//             console.log('action LR: ', action);
-//             message.error('LogIn error', `${action.payload.message}`, 'Ok');
-//         },
-//     },
-// });
+        [logIn.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('LogIn error', `${action.payload.message}`, 'Ok');
+        },
 
-// export default authSlice.reducer;
+        // [googleAuth]: (state, action) => {
+        //     console.log('action: ', action);
+        //     state.accessToken = action.payload.accessToken;
+        //     state.refreshToken = action.payload.refreshToken;
+        //     state.sid = action.payload.sid;
+        //     setToken(action.payload.accessToken);
+        // },
+
+        [logOut.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [logOut.fulfilled]: (state, action) => {
+            // state.accessToken = null; ////////////
+            state.refreshToken = null;
+            state.sid = null;
+            state.userData = null;
+            state.isLoggedIn = false;
+            state.isLoading = false;
+        },
+
+        [logOut.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('LogIn error', `${action.payload.message}`, 'Ok');
+        },
+
+        [refresh.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [refresh.fulfilled]: (state, action) => {
+            // console.log('action: ', action); ////////////////////
+            state.accessToken = action.payload.newAccessToken;
+            state.refreshToken = action.payload.newRefreshToken;
+            state.sid = action.payload.newSid;
+            state.isLoggedIn = true;
+            state.isLoading = false;
+        },
+
+        [refresh.rejected]: (state, action) => {
+            // console.log('action REFRESH: ', action); /////////////////
+            state.isLoading = false;
+            // console.log('refresh error: ', action.payload?.message); /////////
+        },
+
+        [getUser.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [getUser.fulfilled]: (state, action) => {
+            // console.log('action: ', action);
+            state.userData = action.payload;
+            state.isLoading = false;
+            state.isLoggedIn = true;
+        },
+
+        [getUser.rejected]: (state, action) => {
+            state.isLoading = false;
+            // console.log('getUser error: ', action.payload.message); /////////
+        },
+    },
+});
+
+export default authSlice.reducer;

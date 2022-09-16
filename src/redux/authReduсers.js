@@ -1,14 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import message from 'helpers/Message';
-import {
-    register,
-    logIn,
-    googleAuth,
-    logOut,
-    refresh,
-    getUser,
-} from './operations';
-// import {  } from './actions';
+import { register, logIn, logOut, refresh, getUser } from './operations';
+// import { googleAuth } from './actions';
 
 const initalState = {
     // email: null,
@@ -57,25 +50,13 @@ const auth = createReducer(initalState, {
         message.error('LogIn error', `${action.payload.message}`, 'Ok');
     },
 
-    [googleAuth.pending]: state => {
-        state.isLoading = true;
-    },
-
-    [googleAuth.fulfilled]: (state, action) => {
-        console.log('action GOOGLE: ', action); //////////
-        // state.accessToken = action.payload.accessToken; /////////////
-        // state.refreshToken = action.payload.refreshToken;
-        // state.sid = action.payload.sid;
-        // state.userData = action.payload.userData;
-        // state.isLoggedIn = true;
-        // state.canLogin = false;
-        // state.isLoading = false;
-    },
-
-    [googleAuth.rejected]: (state, action) => {
-        state.isLoading = false;
-        message.error('LogIn error', `${action.payload.message}`, 'Ok');
-    },
+    // [googleAuth]: (state, action) => {
+    //     console.log('action: ', action);
+    //     state.accessToken = action.payload.accessToken;
+    //     state.refreshToken = action.payload.refreshToken;
+    //     state.sid = action.payload.sid;
+    //     setToken(action.payload.accessToken);
+    // },
 
     [logOut.pending]: state => {
         state.isLoading = true;
@@ -122,6 +103,7 @@ const auth = createReducer(initalState, {
         console.log('action: ', action);
         state.userData = action.payload;
         state.isLoading = false;
+        state.isLoggedIn = true;
     },
 
     [getUser.rejected]: (state, action) => {

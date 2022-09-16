@@ -12,11 +12,12 @@
     border: none;
     border-radius: 16px;
     cursor: pointer;
+
+    transition: background-color 300ms ease, color 300ms ease;
 }
 
 .button:hover,
 .button:focus {
     color: var(--bg-color);
     background-color: var(--accent-color);
-    transition: background-color 300ms ease, color 300ms ease;
 }

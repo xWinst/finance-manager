@@ -20,38 +20,31 @@ const Header = () => {
 
     return (
         <header className={s.container}>
-            <Link to="/">
-                <svg width="90" height="32">
-                    <use href={`${icons}#logo`} />
-                </svg>
-            </Link>
-            {isLoggedIn && (
-                <div className={s.userThumb}>
-                    <div className={s.avatar}>{avatarLetter}</div>
-                    {isMobile ? (
-                        <svg
-                            className={s.exit}
-                            width="16"
-                            height="16"
-                            onClick={exit}
-                        >
-                            <use href={`${icons}#logout`} />
-                        </svg>
-                    ) : (
-                        <div className={s.thumb}>
-                            <span>{userName}</span>
-                            <div className={s.line}></div>
-                            <button
-                                className={s.button}
-                                type="button"
-                                onClick={exit}
-                            >
-                                Exit
-                            </button>
-                        </div>
-                    )}
-                </div>
-            )}
+            <div className={s.thumb}>
+                <Link to="/">
+                    <svg width="90" height="32">
+                        <use href={`${icons}#logo`} />
+                    </svg>
+                </Link>
+                {isLoggedIn && (
+                    <div className={s.userThumb}>
+                        <div className={s.avatar}>{avatarLetter}</div>
+                        {isMobile ? (
+                            <svg className={s.exit} width="16" height="16" onClick={exit}>
+                                <use href={`${icons}#logout`} />
+                            </svg>
+                        ) : (
+                            <div className={s.thumb}>
+                                <span>{userName}</span>
+                                <div className={s.line}></div>
+                                <button className={s.button} type="button" onClick={exit}>
+                                    Exit
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
         </header>
     );
 };

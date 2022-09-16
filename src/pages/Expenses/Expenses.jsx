@@ -1,11 +1,7 @@
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 //import s from '../index.module.css';
 
 const Expenses = () => {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-
-    return isLoggedIn ? <div> Expenses</div> : <Navigate to="/" />;
+    return <div> Expenses</div>;
 };
 
 export default Expenses;
