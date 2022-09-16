@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/415.40269297.chunk.js","mappings":"2IAMA,UAJgB,WACZ,OAAO","sources":["pages/Incomes/Incomes.jsx"],"sourcesContent":["// import s from '../index.module.css';\n\nconst Incomes = () => {\n    return <div> Income</div>;\n};\n\nexport default Incomes;\n"],"names":[],"sourceRoot":""}

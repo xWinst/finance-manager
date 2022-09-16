@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/518.df70672e.chunk.js","mappings":"2IAMA,UAJiB,WACb,OAAO","sources":["pages/Expenses/Expenses.jsx"],"sourcesContent":["//import s from '../index.module.css';\n\nconst Expenses = () => {\n    return <div> Expenses</div>;\n};\n\nexport default Expenses;\n"],"names":[],"sourceRoot":""}
