@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/370.32fabcf4.chunk.js","mappings":"2IAMA,UAJgB,WACZ,OAAO","sources":["pages/Reports/Reports.jsx"],"sourcesContent":["// import s from '../index.module.css';\n\nconst Reports = () => {\n    return <div> Reports</div>;\n};\n\nexport default Reports;\n"],"names":[],"sourceRoot":""}
