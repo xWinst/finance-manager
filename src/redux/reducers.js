@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import message from 'helpers/Message';
-import { registration, logIn, logOut, refresh, getUser } from './operations';
+import { registration, logIn, logOut, refresh, getUser, setUserBalance } from './userOperations';
 // import {  } from './actions';
 
 const initialState = {
@@ -16,8 +16,8 @@ const initialState = {
     // canLogin: false,
 };
 
-const authSlice = createSlice({
-    name: 'auth',
+const userSlice = createSlice({
+    name: 'user',
     initialState,
     extraReducers: {
         [registration.pending]: state => {
@@ -25,7 +25,6 @@ const authSlice = createSlice({
         },
 
         [registration.fulfilled]: state => {
-            state.canLogin = true;
             state.isLoading = false;
         },
 
@@ -44,7 +43,6 @@ const authSlice = createSlice({
             state.sid = action.payload.sid;
             state.userData = action.payload.userData;
             state.isLoggedIn = true;
-            state.canLogin = false;
             state.isLoading = false;
         },
 
@@ -85,11 +83,12 @@ const authSlice = createSlice({
 
         [refresh.fulfilled]: (state, action) => {
             // console.log('action: ', action); ////////////////////
+            // console.log('refresh COMPLITE');
             state.accessToken = action.payload.newAccessToken;
             state.refreshToken = action.payload.newRefreshToken;
             state.sid = action.payload.newSid;
             state.isLoggedIn = true;
-            state.isLoading = false;
+            // state.isLoading = false;
         },
 
         [refresh.rejected]: (state, action) => {
@@ -103,6 +102,7 @@ const authSlice = createSlice({
         },
 
         [getUser.fulfilled]: (state, action) => {
+            // console.log('getUser COMPLITE');
             // console.log('action: ', action);
             state.userData = action.payload;
             state.isLoading = false;
@@ -113,7 +113,11 @@ const authSlice = createSlice({
             state.isLoading = false;
             // console.log('getUser error: ', action.payload.message); /////////
         },
+
+        [setUserBalance.fulfilled]: (state, action) => {
+            state.userData.balance = action.payload.newBalance;
+        },
     },
 });
 
-export default authSlice.reducer;
+export default userSlice.reducer;

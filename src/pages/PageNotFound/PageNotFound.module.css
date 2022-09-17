@@ -24,7 +24,7 @@
 
 .text {
     margin-bottom: 15px;
-    color: var(--text-color-four);
+    color: var(--main-color);
 }
 
 @media screen and (min-width: 768px) {

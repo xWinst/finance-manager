@@ -39,11 +39,12 @@ export const logOut = createAsyncThunk('auth/logout', async (_, { rejectWithValu
 });
 
 export const refresh = createAsyncThunk('auth/refresh', async (sid, thunkAPI) => {
-    const refreshToken = thunkAPI.getState().auth.refreshToken;
-    const accessToken = thunkAPI.getState().auth.accessToken;
+    const refreshToken = thunkAPI.getState().user.refreshToken;
+    // const accessToken = thunkAPI.getState().auth.accessToken;
 
-    if (!refreshToken || accessToken) return thunkAPI.rejectWithValue('отенен');
+    if (!refreshToken) return thunkAPI.rejectWithValue('отенен');
     setToken(refreshToken);
+    // console.log('refresh START');
     try {
         const { data } = await axios.post('/auth/refresh', { sid });
         setToken(data.newAccessToken);
@@ -55,8 +56,18 @@ export const refresh = createAsyncThunk('auth/refresh', async (sid, thunkAPI) =>
 });
 
 export const getUser = createAsyncThunk('getUser', async (_, { rejectWithValue }) => {
+    // console.log('getUser START');
     try {
         const { data } = await axios.get('/user');
+        return data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
+
+export const setUserBalance = createAsyncThunk('user/balance', async (newBalance, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.patch('/user/balance', { newBalance });
         return data;
     } catch (error) {
         return rejectWithValue(error);

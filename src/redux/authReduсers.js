@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import message from 'helpers/Message';
-import { register, logIn, logOut, refresh, getUser } from './operations';
+import { register, logIn, logOut, refresh, getUser } from './userOperations';
 // import { googleAuth } from './actions';
 
 const initalState = {

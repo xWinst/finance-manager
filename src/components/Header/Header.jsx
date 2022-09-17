@@ -1,18 +1,26 @@
 import { Link } from 'react-router-dom';
-// import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from 'redux/operations';
+import { logOut } from 'redux/userOperations';
+import { Icon } from 'components';
 import icons from 'images/icons.svg';
 import s from './Header.module.css';
 
 const Header = () => {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const user = useSelector(state => state.auth.userData?.email);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 767);
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+    const user = useSelector(state => state.user.userData?.email);
     const userName = user?.slice(0, user.indexOf('@'));
     const avatarLetter = userName?.slice(0, 1);
-    const isMobile = window.innerWidth < 767;
-
     const dispatch = useDispatch();
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 767);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+    }, []);
 
     const exit = () => {
         dispatch(logOut());
@@ -22,19 +30,15 @@ const Header = () => {
         <header className={s.container}>
             <div className={s.thumb}>
                 <Link to="/">
-                    <svg width="90" height="32">
-                        <use href={`${icons}#logo`} />
-                    </svg>
+                    <Icon width="90" height="32" href={`${icons}#logo`} />
                 </Link>
                 {isLoggedIn && (
                     <div className={s.userThumb}>
                         <div className={s.avatar}>{avatarLetter}</div>
                         {isMobile ? (
-                            <svg className={s.exit} width="16" height="16" onClick={exit}>
-                                <use href={`${icons}#logout`} />
-                            </svg>
+                            <Icon className={s.exit} width="16" height="16" href={`${icons}#logout`} onClick={exit} />
                         ) : (
-                            <div className={s.thumb}>
+                            <div className={s.userData}>
                                 <span>{userName}</span>
                                 <div className={s.line}></div>
                                 <button className={s.button} type="button" onClick={exit}>

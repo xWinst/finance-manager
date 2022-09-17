@@ -1,9 +1,8 @@
 import { Suspense, useEffect, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-// import { Home, Expenses, Income, Reports, PageNotFound } from 'pages';
-import { Header, Loader, PrivateRoute, RestrictedRoute } from 'components';
-import { refresh } from 'redux/operations';
+import { Header, Loader } from 'components';
+import { refresh } from 'redux/userOperations';
 
 const Expenses = lazy(() => import('pages/Expenses/Expenses'));
 const Incomes = lazy(() => import('pages/Incomes/Incomes'));
@@ -11,14 +10,19 @@ const Reports = lazy(() => import('pages/Reports/Reports'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 const Home = lazy(() => import('pages/Home/Home'));
 
+// let render = 0;
+
 export const App = () => {
     const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.auth.isLoading);
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const sid = useSelector(state => state.auth.sid);
+    const isLoading = useSelector(state => state.user.isLoading);
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+    const sid = useSelector(state => state.user.sid);
 
+    // console.log('render # ', ++render, 'isLoggedIn: ', isLoggedIn, 'sid: ', sid);
     useEffect(() => {
+        // console.log('render in EFFECT ', render);
         if (!isLoggedIn && sid) dispatch(refresh(sid));
+        // if (isLoggedIn) dispatch(getUser());
     }, [isLoggedIn, dispatch, sid]);
 
     return isLoading ? (
@@ -29,38 +33,10 @@ export const App = () => {
             <main className="main">
                 <Suspense fallback={<Loader />}>
                     <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <RestrictedRoute>
-                                    <Home />
-                                </RestrictedRoute>
-                            }
-                        />
-                        <Route
-                            path="expenses"
-                            element={
-                                <PrivateRoute>
-                                    <Expenses />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="incomes"
-                            element={
-                                <PrivateRoute>
-                                    <Incomes />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="reports"
-                            element={
-                                <PrivateRoute>
-                                    <Reports />
-                                </PrivateRoute>
-                            }
-                        />
+                        <Route path="/" element={<Home />} />
+                        <Route path="expenses" element={<Expenses />} />
+                        <Route path="incomes" element={<Incomes />} />
+                        <Route path="reports" element={<Reports />} />
                         <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </Suspense>

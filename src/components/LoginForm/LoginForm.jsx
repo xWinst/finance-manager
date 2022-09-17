@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useGoogleLogin } from '@moeindana/google-oauth';
 import { useForm } from 'react-hook-form';
-import { Button } from 'components';
-import { logIn, registration } from 'redux/operations';
+import { Button, Icon } from 'components';
+import { logIn, registration } from 'redux/userOperations';
 import icons from 'images/icons.svg';
 import s from './LoginForm.module.css';
 
 const LoginForm = () => {
+    const [isOpenEye, setIsOpenEye] = useState(false);
     const {
         register,
         formState: { errors },
@@ -22,6 +24,7 @@ const LoginForm = () => {
         dispatch(registration(user));
     };
 
+    //=== This is a "crutch" since authorization on the backend using Google accounts is outdated :(
     const loginWithGoogle = useGoogleLogin({
         onSuccess: tokenResponse => {
             const user = {
@@ -31,6 +34,11 @@ const LoginForm = () => {
             dispatch(registration(user));
         },
     });
+    //=======
+
+    const togglePasswordVisibility = () => {
+        setIsOpenEye(state => !state);
+    };
 
     return (
         <form className={s.form}>
@@ -56,13 +64,16 @@ const LoginForm = () => {
                 <span className={s.label__text}>Password</span>
                 <input
                     className={s.input}
-                    type="password"
+                    type={isOpenEye ? 'text' : 'password'}
                     placeholder="Password"
                     {...register('password', {
                         required: 'This is a required field',
                         minLength: { value: 8, message: 'Password must contain 8 or more characters' },
                     })}
                 />
+                <button className={s.eye} type="button" onClick={togglePasswordVisibility}>
+                    <Icon width="20" height="20" href={isOpenEye ? `${icons}#eye` : `${icons}#closedEye`} />
+                </button>
                 <p className={s.error}>{errors?.password ? `* ${errors.password.message}` : <>&nbsp;</>}</p>
             </label>
             <div className={s.thumb}>

@@ -1,5 +1,6 @@
+/* ======= Home Page ======== */
 .hero {
-    padding-top: 80px;
+    padding: 24px 0;
 }
 
 .thumb {
@@ -45,7 +46,68 @@
     font-size: 13px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--text-color-four);
+    color: var(--main-color);
+}
+
+/* ======= Expenses Page ======== */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 40px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.icon {
+    fill: var(--main-color);
+}
+
+.nav {
+    position: fixed;
+    width: 100%;
+    max-width: 480px;
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+}
+
+.navLink {
+    width: 50%;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: inherit;
+    background: var(--bg-link-color);
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+.navLink:hover,
+.navLink:focus {
+    color: var(--accent-color);
+    background-color: var(--bg-color);
+}
+
+.active {
+    composes: navLink;
+    color: var(--bg-color);
+    background: var(--accent-color);
 }
 
 @media screen and (min-width: 768px) {

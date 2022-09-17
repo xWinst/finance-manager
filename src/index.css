@@ -4,11 +4,12 @@
 :root {
     --accent-color: #ff751d;
     --avatar-bg-color: #f5f6fa;
-    --text-color-four: #52555f;
+    --main-color: #52555f;
     --separate-line-color: #e0e5eb;
     --input-bg-color: #f6f7fb;
     --bg-color: #ffffff;
-    --bg-secondary-colour: #f2f5fc;
+    --bg-secondary-color: #f2f5fc;
+    --bg-link-color: #f5f6fb;
     --text-color-three: #a6abb9;
     /* --text-color-one: #52555fb2;
   --text-color-two: #eb5757;
@@ -21,7 +22,6 @@
   --positive-sum-color: #407946;
   --inactive-tab-bg-color: #fefefe;
   --active-tab-bg-color: #fafbfd;
-  --bg-modal-two-colour: #f5f6fb;
   --bg-modal-three-colour: #dfe2eb;
   --header-vertical-line-bg-color: #e0e5eb;
 
@@ -57,7 +57,7 @@ img {
 
 .container {
     background-image: url('./images/bg.svg'), url('./images/bgCabbage.svg'),
-        linear-gradient(var(--bg-secondary-colour) 342px, #ffffff 342px);
+        linear-gradient(var(--bg-secondary-color) 342px, #ffffff 342px);
     background-repeat: no-repeat;
     background-position: top 222px left, top 85px left calc(100vw - 110px), top left;
     background-size: 120px 120px, 1334px 232px, 100%;
@@ -65,15 +65,11 @@ img {
 
 .main {
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 56px 20px 0;
     width: 100%;
 }
 
 @media screen and (min-width: 480px) {
-    /* .container {
-        background-position: top 462px left, top 85px left 100px, top left;
-    } */
-
     .main {
         max-width: var(--mobile);
     }
@@ -82,7 +78,7 @@ img {
 @media screen and (min-width: 768px) {
     .container {
         background-image: url('./images/bg.svg'), url('./images/bgCabbage.svg'),
-            linear-gradient(var(--bg-secondary-colour) 582px, #ffffff 582px);
+            linear-gradient(var(--bg-secondary-color) 582px, #ffffff 582px);
         background-position: top 462px left, top 85px center, top left;
     }
 
