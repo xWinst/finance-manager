@@ -11,6 +11,7 @@
     color: var(--main-color);
     border: none;
     border-radius: 16px;
+    box-shadow: var(--box-shadow);
     cursor: pointer;
 
     transition: background-color 300ms ease, color 300ms ease;

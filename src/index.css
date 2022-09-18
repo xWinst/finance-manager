@@ -11,10 +11,13 @@
     --bg-secondary-color: #f2f5fc;
     --bg-link-color: #f5f6fb;
     --text-color-three: #a6abb9;
+    --placeholder-color: #c7ccdc;
+
+    --box-shadow: 1px 3px 5px #aab2c533;
+    --transition: background-color 300ms ease, color 300ms ease;
     /* --text-color-one: #52555fb2;
   --text-color-two: #eb5757;
   --text-color-three: #a6abb9;
-  --modal-nonaccent-text-color: #c7ccdc;
   --accent-color: #ff751d;
   --unaccent-color: #ffdac0;
   --unaccent-pictogram-color: #071f41;
@@ -30,8 +33,7 @@
       #1d346a 2.84%,
       #031634 67.28%
   );
-  --anim-props: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --box-shadow: 0px 10px 60px 0px rgba(170, 178, 197, 0.2); */
+*/
 
     --mobile: 480px;
     --tablet: 768px;
@@ -55,6 +57,10 @@ img {
     display: block;
 }
 
+input:focus {
+    outline: none;
+}
+
 .container {
     background-image: url('./images/bg.svg'), url('./images/bgCabbage.svg'),
         linear-gradient(var(--bg-secondary-color) 342px, #ffffff 342px);
@@ -67,12 +73,7 @@ img {
     margin: 0 auto;
     padding: 56px 20px 0;
     width: 100%;
-}
-
-@media screen and (min-width: 480px) {
-    .main {
-        max-width: var(--mobile);
-    }
+    max-width: var(--mobile);
 }
 
 @media screen and (min-width: 768px) {

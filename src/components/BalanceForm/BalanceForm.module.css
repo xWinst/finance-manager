@@ -20,6 +20,7 @@
     border: 2px solid var(--bg-color);
     border-radius: 22px 0 0 22px;
     text-align: end;
+    /* box-shadow: -2px 2px 4px 0px lightgrey; */
 }
 
 .balance:focus {
@@ -40,6 +41,8 @@
     border-left: none;
     border-radius: 0 22px 22px 0;
     text-transform: uppercase;
+    cursor: pointer;
+    /* box-shadow: 2px 2px 4px 0px lightgrey; */
 
     transition: background-color 300ms ease, border-color 300ms ease;
 }

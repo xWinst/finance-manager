@@ -6,3 +6,5 @@ export { default as Button } from './Button/Button';
 export { default as PrivateRoute } from './ProtectedRoutes/PrivateRoute';
 export { default as RestrictedRoute } from './ProtectedRoutes/RestrictedRoutes';
 export { default as BalanceForm } from './BalanceForm/BalanceForm';
+export { default as Calendar } from './Calendar/Calendar';
+export { default as Select } from './Select/Select';
