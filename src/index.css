@@ -27,7 +27,6 @@
   --inactive-tab-bg-color: #fefefe;
   --active-tab-bg-color: #fafbfd;
   --bg-modal-three-colour: #dfe2eb;
-  --header-vertical-line-bg-color: #e0e5eb;
 
   --modal-comment-bg: linear-gradient(
       117.84deg,
@@ -58,6 +57,28 @@ img {
     display: block;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    padding: 0;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
 input:focus {
     outline: none;
 }
@@ -68,6 +89,8 @@ input:focus {
     background-repeat: no-repeat;
     background-position: top 222px left, top 85px left calc(100vw - 110px), top left;
     background-size: 120px 120px, 1334px 232px, 100%;
+
+    background-attachment: fixed;
 }
 
 .container-with-user {
@@ -75,6 +98,8 @@ input:focus {
     background-repeat: no-repeat;
     background-position: top 222px left, top left;
     background-size: 120px 120px, 100%;
+
+    background-attachment: fixed;
 }
 
 .main {

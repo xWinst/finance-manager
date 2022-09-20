@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Calendar, Select, Button, Icon } from 'components';
+import allCategories from 'database/categories';
 import message from 'helpers/Message';
 import icons from 'images/icons.svg';
 import s from './TransactionInputForm.module.css';
 
-const TransactionInputForm = ({ onClick, categories, operation }) => {
+const TransactionInputForm = ({ onClick, operation }) => {
     const [date, setDate] = useState();
     const [description, setDescription] = useState();
     const [category, setCategory] = useState();
@@ -15,8 +16,17 @@ const TransactionInputForm = ({ onClick, categories, operation }) => {
     const { pathname } = useLocation();
     const dispatch = useDispatch();
 
-    const text = pathname === '/expenses' ? 'Expenses' : 'Incomes';
-    const textColor = pathname === '/expenses' ? '#ff0000' : '#00a000';
+    let text, textColor, categories;
+
+    if (pathname === '/expenses') {
+        text = 'Expenses';
+        textColor = '#e7192e';
+        categories = allCategories.expenses;
+    } else {
+        text = 'Incomes';
+        textColor = '#407946';
+        categories = allCategories.incomes;
+    }
 
     const getDate = date => {
         const year = date.toLocaleString('default', { year: 'numeric' });
@@ -36,8 +46,6 @@ const TransactionInputForm = ({ onClick, categories, operation }) => {
 
     const changeAmount = event => {
         const { value } = event.target;
-        console.log('value: ', value);
-        console.log('!Number(value): ', !Number(value));
         if (!Number(value) && value) return;
         setAmount(value.trim());
     };

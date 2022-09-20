@@ -1,14 +1,34 @@
+.container {
+    position: sticky;
+    top: 56px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 25px 0 10px;
+    background: var(--bg-secondary-color);
+    z-index: 10;
+}
+
 .link {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
     gap: 15px;
     text-decoration: none;
     color: var(--main-color);
+
+    transition: color 300ms ease;
+}
+
+.link:hover,
+.link:focus {
+    color: var(--accent-color);
 }
 
 .icon {
-    fill: var(--main-color);
+    fill: currentColor;
 }
 
 .btn {

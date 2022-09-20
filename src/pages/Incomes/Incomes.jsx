@@ -1,26 +1,24 @@
 import { useState } from 'react';
-import { PrivateRoute, TransactionInputForm, Navigate } from 'components';
+import { TransactionInputForm, TransactionInfo } from 'components';
 import { addIncome } from 'redux/transactionOperation';
-import categories from 'database/incomesCategories';
 
 import s from '../index.module.css';
 
 const Incomes = () => {
     const [isShowInputForm, setIsShowInputForm] = useState(false);
 
-    const toggleInpurForm = () => {
+    const toggleComponent = () => {
         setIsShowInputForm(state => !state);
     };
+
     return (
-        <PrivateRoute>
-            <div className={s.container}>
-                {isShowInputForm ? (
-                    <TransactionInputForm onClick={toggleInpurForm} categories={categories} operation={addIncome} />
-                ) : (
-                    <Navigate onClick={toggleInpurForm} text={'Add incomes'} />
-                )}
-            </div>
-        </PrivateRoute>
+        <div className={s.container}>
+            {isShowInputForm ? (
+                <TransactionInputForm onClick={toggleComponent} operation={addIncome} />
+            ) : (
+                <TransactionInfo onClick={toggleComponent} text={'Add incomes'} />
+            )}
+        </div>
     );
 };
 

@@ -1,0 +1,20 @@
+{
+    "expenses": {
+        "Продукты": "Products",
+        "Алкоголь": "Alcohol",
+        "Развлечения": "Entertainment",
+        "Здоровье": "Health",
+        "Транспорт": "Transport",
+        "Всё для дома": "Housing",
+        "Техника": "Technique",
+        "Коммуналка и связь": "Communal, communication",
+        "Спорт и хобби": "Sports, hobbies",
+        "Образование": "Education",
+        "Прочее": "Other"
+    },
+
+    "incomes": {
+        "З/П": "Salary",
+        "Доп. доход": "Additional income"
+    }
+}

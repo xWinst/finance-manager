@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const RestrictedRoute = ({ children }) => {
+const RestrictedRoute = () => {
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
-    return isLoggedIn ? <Navigate to="/expenses" /> : children;
+    // console.log('RestrictedRoute??');
+
+    return isLoggedIn ? <Navigate to="/expenses" /> : <Outlet />;
 };
 
 export default RestrictedRoute;

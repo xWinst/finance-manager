@@ -11,7 +11,6 @@ const BalanceForm = () => {
     const dispath = useDispatch();
 
     const canChangeBalans = transactions.length === 0;
-    console.log('canChangeBalans: ', canChangeBalans);
 
     useEffect(() => {
         setBalance(`${userBalance.toFixed(2)} UAH`);

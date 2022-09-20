@@ -9,4 +9,5 @@ export { default as BalanceForm } from './BalanceForm/BalanceForm';
 export { default as Calendar } from './Calendar/Calendar';
 export { default as Select } from './Select/Select';
 export { default as TransactionInputForm } from './TransactionInputForm/TransactionInputForm';
-export { default as Navigate } from './Navigate/Navigate';
+export { default as TransactionInfo } from './TransactionInfo/TransactionInfo';
+export { default as TransactionList } from './TransactionList/TransactionList';
