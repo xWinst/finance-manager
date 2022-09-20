@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfinance_manager=self.webpackChunkfinance_manager||[]).push([[370],{5370:function(n,e,a){a.r(e);var r=a(2428),c=a(184);e.default=function(){return(0,c.jsxs)(r.M8,{children:[(0,c.jsx)("div",{children:" Reports"}),";"]})}}}]);
-//# sourceMappingURL=370.ff621a99.chunk.js.map
