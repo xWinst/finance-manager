@@ -1,2 +1,39 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+export const addExpense = createAsyncThunk('transaction/addExpense', async (transactionData, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.post('/transaction/expense', transactionData);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
+
+export const getExpenses = createAsyncThunk('transaction/expenses', async (_, { rejectWithValue }) => {
+    console.log('getExpenses');
+    try {
+        const { data } = await axios.get('/transaction/expense');
+        return data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
+
+export const addIncome = createAsyncThunk('transaction/addIncome', async (transactionData, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.post('/transaction/income', transactionData);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
+
+export const getIncomes = createAsyncThunk('transaction/incomes', async (_, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.get('/transaction/income');
+        return data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});

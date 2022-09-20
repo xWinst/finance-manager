@@ -1,0 +1,70 @@
+.link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.icon {
+    fill: var(--main-color);
+}
+
+.btn {
+    width: 145px;
+    margin-top: 30px;
+    padding: 13px;
+    background-color: transparent;
+    color: var(--main-color);
+    border: 2px solid var(--bg-color);
+    border-radius: 22px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.nav {
+    position: fixed;
+    width: 100%;
+    max-width: 480px;
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+}
+
+.navLink {
+    width: 50%;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: inherit;
+    background: var(--bg-link-color);
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+.navLink:hover,
+.navLink:focus {
+    color: var(--accent-color);
+    background-color: var(--bg-color);
+}
+
+.active {
+    composes: navLink;
+    color: var(--bg-color);
+    background: var(--accent-color);
+}

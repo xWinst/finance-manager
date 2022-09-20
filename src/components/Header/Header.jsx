@@ -7,7 +7,7 @@ import icons from 'images/icons.svg';
 import s from './Header.module.css';
 
 const Header = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 767);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
     const user = useSelector(state => state.user.userData?.email);
     const userName = user?.slice(0, user.indexOf('@'));
@@ -15,11 +15,12 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const handleResize = () => {
-        setIsMobile(window.innerWidth < 767);
+        setIsMobile(window.innerWidth < 768);
     };
 
     useEffect(() => {
         window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const exit = () => {

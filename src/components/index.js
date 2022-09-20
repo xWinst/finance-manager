@@ -8,3 +8,5 @@ export { default as RestrictedRoute } from './ProtectedRoutes/RestrictedRoutes';
 export { default as BalanceForm } from './BalanceForm/BalanceForm';
 export { default as Calendar } from './Calendar/Calendar';
 export { default as Select } from './Select/Select';
+export { default as TransactionInputForm } from './TransactionInputForm/TransactionInputForm';
+export { default as Navigate } from './Navigate/Navigate';

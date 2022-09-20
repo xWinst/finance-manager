@@ -1,7 +1,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import userSlice from './reducers';
+import userReducer from './userReducers';
+// import transactionSlice from './transactionReducers';
 
 const persistConfig = {
     key: 'user',
@@ -12,7 +13,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    user: persistReducer(persistConfig, userSlice),
+    user: persistReducer(persistConfig, userReducer),
+    // transaction: transactionSlice,
     // user: userSlice,
 });
 

@@ -1,6 +1,6 @@
 import { Suspense, useEffect, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Header, Loader } from 'components';
 import { refresh } from 'redux/userOperations';
 
@@ -17,7 +17,8 @@ export const App = () => {
     const isLoading = useSelector(state => state.user.isLoading);
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
     const sid = useSelector(state => state.user.sid);
-
+    const { pathname } = useLocation();
+    const className = pathname === '/' ? 'container' : 'container-with-user';
     // console.log('render # ', ++render, 'isLoggedIn: ', isLoggedIn, 'sid: ', sid);
     useEffect(() => {
         // console.log('render in EFFECT ', render);
@@ -28,7 +29,7 @@ export const App = () => {
     return isLoading ? (
         <Loader />
     ) : (
-        <div className="container">
+        <div className={className}>
             <Header />
             <main className="main">
                 <Suspense fallback={<Loader />}>

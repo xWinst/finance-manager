@@ -5,10 +5,11 @@ import icons from 'images/icons.svg';
 import s from './Calendar.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const Calendar = ({ getDate }) => {
-    const [date, setDate] = useState(new Date());
+const Calendar = ({ getDate, initial }) => {
+    const [date, setDate] = useState(initial);
 
     useEffect(() => getDate(date));
+    useEffect(() => setDate(new Date()), [initial]); //reset
 
     return (
         <div className={s.container}>

@@ -1,71 +1,47 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { PrivateRoute, Icon, BalanceForm, Button, Calendar, Select } from 'components';
-import categories from 'database/expensesCategories';
+import { useSelector } from 'react-redux';
+import { PrivateRoute, TransactionInputForm, Navigate, Icon } from 'components';
+import { addExpense } from 'redux/transactionOperation';
 import icons from 'images/icons.svg';
+import categories from 'database/expensesCategories';
 
 import s from '../index.module.css';
 
-const getActive = ({ isActive }) => (isActive ? s.active : s.navLink);
-
 const Expenses = () => {
     const [isShowInputForm, setIsShowInputForm] = useState(false);
-    const [date, setDate] = useState();
+    const expenses = useSelector(state => state.user.expenses);
 
     const toggleInpurForm = () => {
         setIsShowInputForm(state => !state);
     };
 
-    const getDate = date => {
-        const year = date.toLocaleString('default', { year: 'numeric' });
-        const month = date.toLocaleString('default', { month: '2-digit' });
-        const day = date.toLocaleString('default', { day: '2-digit' });
-        const formattedDate = day + '.' + month + '.' + year;
-
-        setDate(formattedDate);
-    };
+    // useEffect(() => {
+    //     console.log('RENDER');
+    // });
 
     return (
         <PrivateRoute>
             <div className={s.container}>
                 {isShowInputForm ? (
-                    <div className={s.inputContainer}>
-                        <button className={s.goBack} type="button" onClick={toggleInpurForm}>
-                            <Icon href={`${icons}#goBack`} width="24" height="24" />
-                        </button>
-                        <p className={s.text}>Expenses</p>
-                        <form className={s.form}>
-                            <Calendar getDate={getDate} />
-                            <input className={s.input} placeholder="Product description" />
-                            <Select categories={categories} />
-                            <div className={s.priceContainer}>
-                                <input className={s.price} placeholder="00.00 UAH" />
-                                <Icon className={s.calcIcon} href={`${icons}#calculator`} width="20" height="20" />
-                            </div>
-                            <div className={s.btnsContainer}>
-                                <Button type="submit" text="Input" />
-                                <Button text="Clear" />
-                            </div>
-                        </form>
-                    </div>
+                    <TransactionInputForm onClick={toggleInpurForm} categories={categories} operation={addExpense} />
                 ) : (
                     <>
-                        <Link to="/reports" className={s.link}>
-                            Reports
-                            <Icon className={s.icon} width="20" height="20" href={`${icons}#chart`} />
-                        </Link>
-                        <BalanceForm />
-                        <button className={s.btn} type="button" onClick={toggleInpurForm}>
-                            Add expenses
-                        </button>
-                        <div className={s.nav}>
-                            <NavLink className={getActive} to="/expenses">
-                                Expenses
-                            </NavLink>
-                            <NavLink className={getActive} to="/incomes">
-                                Incomes
-                            </NavLink>
-                        </div>
+                        <ul>
+                            {expenses.map(expense => (
+                                <li>
+                                    <div>
+                                        <p>{expense.description}</p>
+                                        <div>
+                                            <p>{expense.date}</p>
+                                            <p>{expense.category}</p>
+                                        </div>
+                                    </div>
+                                    <p>{expense.amount}</p>
+                                    <Icon href={`${icons}#arrowDown`} width="18" height="18" />
+                                </li>
+                            ))}
+                        </ul>
+                        <Navigate onClick={toggleInpurForm} text={'Add expenses'} />
                     </>
                 )}
             </div>

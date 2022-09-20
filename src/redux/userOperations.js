@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getExpenses, getIncomes } from './transactionOperation';
 
 axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
 
@@ -19,10 +20,12 @@ export const registration = createAsyncThunk('auth/register', async (credentials
     }
 });
 
-export const logIn = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
+export const logIn = createAsyncThunk('auth/login', async (credentials, { rejectWithValue, dispatch }) => {
     try {
         const { data } = await axios.post('/auth/login', credentials);
         setToken(data.accessToken);
+        dispatch(getExpenses());
+        dispatch(getIncomes());
         return data;
     } catch (error) {
         return rejectWithValue(error);
@@ -49,6 +52,8 @@ export const refresh = createAsyncThunk('auth/refresh', async (sid, thunkAPI) =>
         const { data } = await axios.post('/auth/refresh', { sid });
         setToken(data.newAccessToken);
         thunkAPI.dispatch(getUser());
+        thunkAPI.dispatch(getExpenses());
+        thunkAPI.dispatch(getIncomes());
         return data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error);

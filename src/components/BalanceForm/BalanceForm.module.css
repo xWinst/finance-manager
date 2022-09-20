@@ -20,11 +20,14 @@
     border: 2px solid var(--bg-color);
     border-radius: 22px 0 0 22px;
     text-align: end;
-    /* box-shadow: -2px 2px 4px 0px lightgrey; */
 }
 
 .balance:focus {
     outline: none;
+}
+
+.balance:disabled {
+    box-shadow: inset var(--box-shadow);
 }
 
 .line {
@@ -42,12 +45,20 @@
     border-radius: 0 22px 22px 0;
     text-transform: uppercase;
     cursor: pointer;
-    /* box-shadow: 2px 2px 4px 0px lightgrey; */
 
-    transition: background-color 300ms ease, border-color 300ms ease;
+    transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
 }
 
 .button:hover {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.button:disabled {
+    background-color: transparent;
+    border-color: var(--bg-color);
+    color: var(--main-color);
+    box-shadow: inset var(--box-shadow);
+    cursor: no-drop;
 }

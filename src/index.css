@@ -12,6 +12,7 @@
     --bg-link-color: #f5f6fb;
     --text-color-three: #a6abb9;
     --placeholder-color: #c7ccdc;
+    --placeholder2-color: #9499a9;
 
     --box-shadow: 1px 3px 5px #aab2c533;
     --transition: background-color 300ms ease, color 300ms ease;
@@ -67,6 +68,13 @@ input:focus {
     background-repeat: no-repeat;
     background-position: top 222px left, top 85px left calc(100vw - 110px), top left;
     background-size: 120px 120px, 1334px 232px, 100%;
+}
+
+.container-with-user {
+    background-image: url('./images/bg.svg'), linear-gradient(var(--bg-secondary-color) 342px, #ffffff 342px);
+    background-repeat: no-repeat;
+    background-position: top 222px left, top left;
+    background-size: 120px 120px, 100%;
 }
 
 .main {

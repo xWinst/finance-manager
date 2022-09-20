@@ -1,28 +1,24 @@
-import { PrivateRoute, Icon, BalanceForm } from 'components';
-import { Link, NavLink } from 'react-router-dom';
-import icons from 'images/icons.svg';
+import { useState } from 'react';
+import { PrivateRoute, TransactionInputForm, Navigate } from 'components';
+import { addIncome } from 'redux/transactionOperation';
+import categories from 'database/incomesCategories';
 
 import s from '../index.module.css';
 
-const getActive = ({ isActive }) => (isActive ? s.active : s.navLink);
-
 const Incomes = () => {
+    const [isShowInputForm, setIsShowInputForm] = useState(false);
+
+    const toggleInpurForm = () => {
+        setIsShowInputForm(state => !state);
+    };
     return (
         <PrivateRoute>
             <div className={s.container}>
-                <Link to="/reports" className={s.link}>
-                    Reports
-                    <Icon className={s.icon} width="20" height="20" href={`${icons}#chart`} />
-                </Link>
-                <BalanceForm />
-                <div className={s.nav}>
-                    <NavLink className={getActive} to="/expenses">
-                        Expenses
-                    </NavLink>
-                    <NavLink className={getActive} to="/incomes">
-                        Incomes
-                    </NavLink>
-                </div>
+                {isShowInputForm ? (
+                    <TransactionInputForm onClick={toggleInpurForm} categories={categories} operation={addIncome} />
+                ) : (
+                    <Navigate onClick={toggleInpurForm} text={'Add incomes'} />
+                )}
             </div>
         </PrivateRoute>
     );

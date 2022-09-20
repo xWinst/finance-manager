@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import message from 'helpers/Message';
 import { registration, logIn, logOut, refresh, getUser, setUserBalance } from './userOperations';
-// import {  } from './actions';
+import { addExpense, addIncome, getExpenses, getIncomes } from './transactionOperation';
 
 const initialState = {
     // email: null,
@@ -14,8 +14,9 @@ const initialState = {
     sid: null,
     userData: null,
     // canLogin: false,
+    expenses: null,
+    incomes: null,
 };
-
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -38,7 +39,6 @@ const userSlice = createSlice({
         },
 
         [logIn.fulfilled]: (state, action) => {
-            // state.accessToken = action.payload.accessToken; /////////////
             state.refreshToken = action.payload.refreshToken;
             state.sid = action.payload.sid;
             state.userData = action.payload.userData;
@@ -51,25 +51,12 @@ const userSlice = createSlice({
             message.error('LogIn error', `${action.payload.message}`, 'Ok');
         },
 
-        // [googleAuth]: (state, action) => {
-        //     console.log('action: ', action);
-        //     state.accessToken = action.payload.accessToken;
-        //     state.refreshToken = action.payload.refreshToken;
-        //     state.sid = action.payload.sid;
-        //     setToken(action.payload.accessToken);
-        // },
-
         [logOut.pending]: state => {
             state.isLoading = true;
         },
 
         [logOut.fulfilled]: (state, action) => {
-            // state.accessToken = null; ////////////
-            state.refreshToken = null;
-            state.sid = null;
-            state.userData = null;
-            state.isLoggedIn = false;
-            state.isLoading = false;
+            state = initialState;
         },
 
         [logOut.rejected]: (state, action) => {
@@ -84,10 +71,10 @@ const userSlice = createSlice({
         [refresh.fulfilled]: (state, action) => {
             // console.log('action: ', action); ////////////////////
             // console.log('refresh COMPLITE');
-            state.accessToken = action.payload.newAccessToken;
+            // state.accessToken = action.payload.newAccessToken;
             state.refreshToken = action.payload.newRefreshToken;
             state.sid = action.payload.newSid;
-            state.isLoggedIn = true;
+            // state.isLoggedIn = true;
             // state.isLoading = false;
         },
 
@@ -116,6 +103,68 @@ const userSlice = createSlice({
 
         [setUserBalance.fulfilled]: (state, action) => {
             state.userData.balance = action.payload.newBalance;
+        },
+
+        [addExpense.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [addExpense.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.userData.balance = action.payload.newBalance;
+            state.userData.transactions.push(action.payload.transaction);
+            state.expenses.expenses.push(action.payload.transaction);
+        },
+
+        [addExpense.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('Transaction adding error', `${action.payload.message}`, 'Ok');
+        },
+
+        [addIncome.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [addIncome.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.userData.balance = action.payload.newBalance;
+            state.userData.transactions.push(action.payload.transaction);
+            state.incomes.incomes.push(action.payload.transaction);
+        },
+
+        [addIncome.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('Transaction adding error', `${action.payload.message}`, 'Ok');
+        },
+
+        [getExpenses.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [getExpenses.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.expenses.expenses = action.payload.expenses;
+            state.expenses.monthStats = action.payload.monthStats;
+        },
+
+        [getExpenses.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('Expenses loading error', `${action.payload.message}`, 'Ok');
+        },
+
+        [getIncomes.pending]: state => {
+            state.isLoading = true;
+        },
+
+        [getIncomes.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.incomes.incomes = action.payload.incomes;
+            state.incomes.monthStats = action.payload.monthStats;
+        },
+
+        [getIncomes.rejected]: (state, action) => {
+            state.isLoading = false;
+            message.error('Incomes loading error', `${action.payload.message}`, 'Ok');
         },
     },
 });

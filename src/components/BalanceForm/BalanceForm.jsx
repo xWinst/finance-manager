@@ -5,9 +5,13 @@ import s from './BalanceForm.module.css';
 
 const BalanceForm = () => {
     const userBalance = useSelector(state => state.user.userData.balance);
+    const transactions = useSelector(state => state.user.userData.transactions);
     const [balance, setBalance] = useState(`${userBalance.toFixed(2)} UAH`);
     const [enteredBalance, setEnteredBalance] = useState(userBalance);
     const dispath = useDispatch();
+
+    const canChangeBalans = transactions.length === 0;
+    console.log('canChangeBalans: ', canChangeBalans);
 
     useEffect(() => {
         setBalance(`${userBalance.toFixed(2)} UAH`);
@@ -15,7 +19,7 @@ const BalanceForm = () => {
 
     const onChange = e => {
         const { value } = e.target;
-        if (!Number(value)) return;
+        if (!Number(value) && value) return;
         setBalance(value);
         setEnteredBalance(value);
     };
@@ -24,7 +28,7 @@ const BalanceForm = () => {
         setBalance('');
     };
 
-    const onBlur = e => {
+    const onBlur = () => {
         setBalance(`${userBalance.toFixed(2)} UAH`);
     };
 
@@ -46,9 +50,9 @@ const BalanceForm = () => {
                     onChange={onChange}
                     onBlur={onBlur}
                     onFocus={onFocus}
-                    disabled={false}
+                    disabled={!canChangeBalans}
                 />
-                <button type="submit" className={s.button}>
+                <button type="submit" className={s.button} disabled={!canChangeBalans}>
                     Confirm
                 </button>
             </form>

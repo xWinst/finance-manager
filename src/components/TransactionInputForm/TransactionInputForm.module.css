@@ -1,0 +1,96 @@
+.inputContainer {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.goBack {
+    position: absolute;
+    top: 78px;
+    left: 20px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+
+    transition: background-color 300ms ease;
+}
+
+.goBack:hover {
+    background-color: var(--accent-color);
+    --arrow-color: var(--bg-color);
+}
+
+.text {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.form {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    height: 44px;
+    padding: 0 20px;
+    border: 2px solid var(--bg-color);
+    border-radius: 22px 22px 0 0;
+    background-color: transparent;
+    color: var(--main-color);
+}
+
+.input::placeholder {
+    color: var(--placeholder-color);
+    opacity: 1;
+}
+
+.priceContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.price {
+    width: 125px;
+    height: 44px;
+    padding: 0 16px;
+    text-align: end;
+    font-weight: 700;
+    color: var(--main-color);
+    background-color: transparent;
+    border: 2px solid var(--bg-color);
+    border-radius: 22px 0 0 22px;
+
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.price::placeholder,
+.price::-moz-placeholder {
+    color: #000000;
+}
+
+.calcIcon {
+    width: 60px;
+    height: 44px;
+    padding: 10px 19px;
+    border: 2px solid #ffffff;
+    border-radius: 0 22px 22px 0;
+    border-left: none;
+}
+
+.btnsContainer {
+    display: flex;
+    gap: 10px;
+    margin-top: 60px;
+}
