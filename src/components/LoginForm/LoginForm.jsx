@@ -31,6 +31,8 @@ const LoginForm = () => {
                 email: tokenResponse.email,
                 password: tokenResponse.id,
             };
+            // console.log('tokenResponse: ', tokenResponse);
+            // picture: "https://lh3.googleusercontent.com/a-/ACNPEu_xmcVb66YLPIu-plMj9qYCK8MRNDI2k0AB1VgsrA=s96-c"
             dispatch(registration(user));
         },
     });

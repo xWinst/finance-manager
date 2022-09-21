@@ -4,16 +4,11 @@ import { registration, logIn, logOut, refresh, getUser, setUserBalance } from '.
 import { addExpense, addIncome, getExpenses, getIncomes, deleteTransaction } from './transactionOperation';
 
 const initialState = {
-    // email: null,
-    // id: null,
     isLoading: false,
-    // error: null,
     isLoggedIn: false,
-    // accessToken: null, /////////////
     refreshToken: null,
     sid: null,
     userData: null,
-    // canLogin: false,
     expenses: null,
     incomes: null,
 };

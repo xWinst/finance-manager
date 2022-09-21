@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { removeTransaction } from './userReducers';
 
 export const addExpense = createAsyncThunk('transaction/addExpense', async (transactionData, { rejectWithValue }) => {
     try {

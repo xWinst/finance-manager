@@ -24,6 +24,7 @@ const Header = () => {
     }, []);
 
     const exit = () => {
+        console.log('exit');
         dispatch(logOut());
     };
 
