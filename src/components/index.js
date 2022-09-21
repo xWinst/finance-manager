@@ -11,3 +11,4 @@ export { default as Select } from './Select/Select';
 export { default as TransactionInputForm } from './TransactionInputForm/TransactionInputForm';
 export { default as TransactionInfo } from './TransactionInfo/TransactionInfo';
 export { default as TransactionList } from './TransactionList/TransactionList';
+export { default as Chart } from './Chart/Chart';

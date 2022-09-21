@@ -156,10 +156,20 @@
     margin-bottom: 20px;
 }
 
+.ad {
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--main-color);
+    text-shadow: 0 0 2px var(--accent-color);
+}
+
 .categories {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin: 20px 0;
+
     background-color: var(--bg-color);
     border-radius: 20px;
     /* justify-content: space-between; */
@@ -201,6 +211,10 @@
     margin-top: 8px;
     text-align: center;
     text-transform: uppercase;
+}
+
+.chartsContainer {
+    background-color: var(--bg-color);
 }
 
 @media screen and (min-width: 768px) {

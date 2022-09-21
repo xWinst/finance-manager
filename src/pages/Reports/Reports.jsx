@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Icon } from 'components';
+import { Chart, Icon } from 'components';
 import { getStatistics } from 'redux/statisticsOperation';
 import allCategories from 'database/categories';
 import months from 'database/months';
@@ -35,7 +35,10 @@ const Reports = () => {
     }, [dispatch, month]);
 
     useEffect(() => {
-        console.log('RENDER'); //////////////
+        console.log('RENDER BEFORE'); //////////////
+        if (keyCurrent.length === 0) return;
+        if (!category) setCategory(keyCurrent[0]);
+        console.log('RENDER AFTER'); //////////////
     });
 
     const getPreviousMonth = () => {
@@ -56,11 +59,14 @@ const Reports = () => {
         }
         keyCurrent = Object.keys(currentStatistics);
         setCategory(keyCurrent[0]);
+        console.log('keyCurrent[0]: ', keyCurrent[0]);
     };
 
     const selectCategory = key => {
         setCategory(key);
     };
+    console.log('category ', category);
+    console.log('keyCurrent: ', keyCurrent);
 
     return (
         <div className={s.container}>
@@ -102,21 +108,28 @@ const Reports = () => {
                     <Icon href={`${icons}#arrowRight`} width="7" height="17" />
                 </button>
             </div>
-            <ul className={s.categories}>
-                {keyCurrent.map((key, index) => (
-                    <li
-                        className={key === category ? s.active : s.category}
-                        key={key}
-                        onClick={() => selectCategory(key)}
-                    >
-                        <p className={s.price}>{formated(currentStatistics[key].total)}</p>
-                        <Icon href={`${icons}#${getName(key)}`} width="56" height="56" />
-                        <p className={s.categoryName}>{categories[key]}</p>
-                    </li>
-                ))}
-            </ul>
 
-            <div>{statistics.toString()}</div>
+            {keyCurrent.length === 0 ? (
+                <p className={s.ad}>No {typeBalance} in this month</p>
+            ) : (
+                <ul className={s.categories}>
+                    {keyCurrent.map((key, index) => (
+                        <li
+                            className={key === category ? s.active : s.category}
+                            key={key}
+                            onClick={() => selectCategory(key)}
+                        >
+                            <p className={s.price}>{formated(currentStatistics[key].total)}</p>
+                            <Icon href={`${icons}#${getName(key)}`} width="56" height="56" />
+                            <p className={s.categoryName}>{categories[key]}</p>
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            <div className={s.chartsContainer}>
+                {keyCurrent.length > 0 && category && <Chart chartData={currentStatistics[category]} />}
+            </div>
         </div>
     );
 };
