@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Chart, Icon } from 'components';
@@ -7,66 +7,50 @@ import allCategories from 'database/categories';
 import months from 'database/months';
 import icons from 'images/icons.svg';
 import s from '../index.module.css';
+// import { useWidth } from 'hooks/useWidth';
 
-const rusMonth = Object.keys(months);
-
-// const formated = number => number?.toFixed(2).toLocaleString('ru-RU').replace(',', '.');
+const monthKeys = Object.keys(months);
 const formated = number => new Intl.NumberFormat('uk', { minimumFractionDigits: 2 }).format(number).replace(',', '.');
 
 const Reports = () => {
     const statistics = useSelector(state => state.statistics);
     const balance = useSelector(state => state.user.userData.balance);
+
     const [month, setMonth] = useState(new Date().getMonth());
     const [typeBalance, setTypeBalance] = useState('expenses');
+    const [category, setCategory] = useState();
 
+    // const width = useWidth();
     const dispatch = useDispatch();
     const categories = allCategories[typeBalance];
     const getName = key => categories[key].split(/,| /)[0].toLowerCase();
+    const currentStatistics = statistics[typeBalance].data || {};
+    const keyCurrent = Object.keys(currentStatistics);
 
-    let currentStatistics = statistics[typeBalance].data || {};
-    console.log('currentStatistics: ', currentStatistics); ///////////////////
-
-    let keyCurrent = Object.keys(currentStatistics);
-
-    const [category, setCategory] = useState(keyCurrent[0]);
-
-    useEffect(() => {
+    if (!keyCurrent.length) {
         dispatch(getStatistics((month + 1).toString().padStart(2, '0')));
-    }, [dispatch, month]);
+        return;
+    } else {
+        if (!currentStatistics[category]) setCategory(keyCurrent[0]);
+    }
 
-    useEffect(() => {
-        console.log('RENDER BEFORE'); //////////////
-        if (keyCurrent.length === 0) return;
-        if (!category) setCategory(keyCurrent[0]);
-        console.log('RENDER AFTER'); //////////////
-    });
-
-    const getPreviousMonth = () => {
-        month === 0 ? setMonth(11) : setMonth(state => state - 1);
-    };
-
-    const getNextMonth = () => {
-        month === 11 ? setMonth(0) : setMonth(state => state + 1);
+    const changeMonth = step => {
+        const result = (month + step + 12) % 12;
+        dispatch(getStatistics((result + 1).toString().padStart(2, '0')));
+        setMonth(result);
     };
 
     const changeTypeBalance = () => {
-        if (typeBalance === 'expenses') {
-            setTypeBalance('incomes');
-            currentStatistics = statistics.incomes.data;
-        } else {
-            setTypeBalance('expenses');
-            currentStatistics = statistics.expenses.data;
-        }
-        keyCurrent = Object.keys(currentStatistics);
-        setCategory(keyCurrent[0]);
-        console.log('keyCurrent[0]: ', keyCurrent[0]);
+        typeBalance === 'expenses' ? setTypeBalance('incomes') : setTypeBalance('expenses');
     };
 
     const selectCategory = key => {
         setCategory(key);
     };
-    console.log('category ', category);
-    console.log('keyCurrent: ', keyCurrent);
+    // console.log('Statistics: ', statistics); ///////////////////
+    // console.log('currentStatistics: ', currentStatistics); ///////////////////
+    // console.log('category ', category);
+    // console.log('keyCurrent: ', keyCurrent);
 
     return (
         <div className={s.container}>
@@ -75,11 +59,11 @@ const Reports = () => {
             </Link>
             <p className={s.text}>Current period:</p>
             <div className={s.period}>
-                <button className={s.button} type="button" onClick={getPreviousMonth}>
+                <button className={s.button} type="button" onClick={() => changeMonth(-1)}>
                     <Icon href={`${icons}#arrowLeft`} width="7" height="17" />
                 </button>
-                <span className={s.month}>{months[rusMonth[month]]}</span>
-                <button className={s.button} type="button" onClick={getNextMonth}>
+                <span className={s.month}>{months[monthKeys[month]]}</span>
+                <button className={s.button} type="button" onClick={() => changeMonth(1)}>
                     <Icon href={`${icons}#arrowRight`} width="7" height="17" />
                 </button>
             </div>
@@ -128,7 +112,9 @@ const Reports = () => {
             )}
 
             <div className={s.chartsContainer}>
-                {keyCurrent.length > 0 && category && <Chart chartData={currentStatistics[category]} />}
+                {keyCurrent.length > 0 && currentStatistics[category] && (
+                    <Chart chartData={currentStatistics[category]} />
+                )}
             </div>
         </div>
     );

@@ -1,27 +1,18 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useWidth } from 'hooks/useWidth';
 import { logOut } from 'redux/userOperations';
 import { Icon } from 'components';
 import icons from 'images/icons.svg';
 import s from './Header.module.css';
 
 const Header = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
     const user = useSelector(state => state.user.userData?.email);
     const userName = user?.slice(0, user.indexOf('@'));
     const avatarLetter = userName?.slice(0, 1);
     const dispatch = useDispatch();
-
-    const handleResize = () => {
-        setIsMobile(window.innerWidth < 768);
-    };
-
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const width = useWidth();
 
     const exit = () => {
         console.log('exit');
@@ -37,7 +28,7 @@ const Header = () => {
                 {isLoggedIn && (
                     <div className={s.userThumb}>
                         <div className={s.avatar}>{avatarLetter}</div>
-                        {isMobile ? (
+                        {width < 768 ? (
                             <Icon className={s.exit} width="16" height="16" href={`${icons}#logout`} onClick={exit} />
                         ) : (
                             <div className={s.userData}>
