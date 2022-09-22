@@ -166,6 +166,8 @@
 }
 
 .categories {
+    width: 100%;
+    max-width: 440px;
     display: flex;
     flex-wrap: wrap;
     margin: 20px 0;
@@ -229,6 +231,38 @@
     .slogan {
         margin: 0 53px;
         font-size: 16px;
+    }
+
+    .container {
+        align-items: flex-start;
+    }
+
+    .balanceThumb {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 96px;
+        margin-bottom: 60px;
+    }
+
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+        color: var(--main-color);
+
+        transition: color 300ms ease;
+    }
+
+    .link:hover,
+    .link:focus {
+        color: var(--accent-color);
+    }
+
+    .icon {
+        fill: currentColor;
     }
 }
 

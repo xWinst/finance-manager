@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Chart, Icon } from 'components';
@@ -27,17 +27,14 @@ const Reports = () => {
     const currentStatistics = statistics[typeBalance].data || {};
     const keyCurrent = Object.keys(currentStatistics);
 
-    if (!keyCurrent.length) {
+    useEffect(() => {
         dispatch(getStatistics((month + 1).toString().padStart(2, '0')));
-        return;
-    } else {
-        if (!currentStatistics[category]) setCategory(keyCurrent[0]);
-    }
+    }, [dispatch, month]);
+
+    if (keyCurrent.length && !currentStatistics[category]) setCategory(keyCurrent[0]);
 
     const changeMonth = step => {
-        const result = (month + step + 12) % 12;
-        dispatch(getStatistics((result + 1).toString().padStart(2, '0')));
-        setMonth(result);
+        setMonth((month + step + 12) % 12);
     };
 
     const changeTypeBalance = () => {

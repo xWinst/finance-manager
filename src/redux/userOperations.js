@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getExpenses, getIncomes } from './transactionOperation';
+import { resetStatistics } from './statisticsReducers';
 
 axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
 
@@ -32,17 +33,17 @@ export const registration = createAsyncThunk('auth/register', async (credentials
     }
 });
 
-export const logOut = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+export const logOut = createAsyncThunk('auth/logout', async (_, { rejectWithValue, dispatch }) => {
     try {
         await axios.post('/auth/logout');
         setToken(null);
+        dispatch(resetStatistics());
     } catch (error) {
         return rejectWithValue(error);
     }
 });
 
 export const getUser = createAsyncThunk('getUser', async (_, { rejectWithValue }) => {
-    // console.log('getUser START');
     try {
         const { data } = await axios.get('/user');
         return data;
@@ -55,13 +56,11 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const refreshToken = thunkAPI.getState().user.refreshToken;
     const isLoggedIn = thunkAPI.getState().user.isLoggedIn;
     const sid = thunkAPI.getState().user.sid;
-    // console.log('refreshToken: ', refreshToken); ////////////////
 
     if (!refreshToken || isLoggedIn) return thunkAPI.rejectWithValue('CANCEL');
     setToken(refreshToken);
-    // console.log('refresh START');
+
     try {
-        // console.log('REFRESH??????????');
         const { data } = await axios.post('/auth/refresh', { sid });
         setToken(data.newAccessToken);
         thunkAPI.dispatch(getExpenses());

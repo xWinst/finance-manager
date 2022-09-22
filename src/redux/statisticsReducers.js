@@ -10,6 +10,14 @@ const initialState = {
 const statisticsSlice = createSlice({
     name: 'statistics',
     initialState,
+    reducers: {
+        resetStatistics: state => {
+            state.expenses.total = null;
+            state.expenses.data = null;
+            state.incomes.total = null;
+            state.incomes.data = null;
+        },
+    },
     extraReducers: {
         [getStatistics.fulfilled]: (state, action) => {
             state.expenses.total = action.payload.expenses.expenseTotal;
@@ -19,9 +27,11 @@ const statisticsSlice = createSlice({
         },
 
         [getStatistics.rejected]: (state, action) => {
-            message.error('Registration error', `${action.payload.message}`, 'Ok');
+            message.error('Getting statistics error', `${action.payload.message}`, 'Ok');
         },
     },
 });
+
+export const { resetStatistics } = statisticsSlice.actions;
 
 export default statisticsSlice.reducer;

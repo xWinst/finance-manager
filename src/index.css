@@ -13,6 +13,8 @@
     --text-color-three: #a6abb9;
     --placeholder-color: #c7ccdc;
     --placeholder2-color: #9499a9;
+    --active-link-bg-color: #fefefe;
+    --inactive-link-bg-color: #fafbfd;
 
     --box-shadow: 1px 3px 5px #aab2c533;
     --transition: background-color 300ms ease, color 300ms ease;
@@ -24,8 +26,6 @@
   --unaccent-pictogram-color: #071f41;
   --negative-sum-color: #e7192e;
   --positive-sum-color: #407946;
-  --inactive-tab-bg-color: #fefefe;
-  --active-tab-bg-color: #fafbfd;
   --bg-modal-three-colour: #dfe2eb;
 
   --modal-comment-bg: linear-gradient(
@@ -84,13 +84,12 @@ input:focus {
 }
 
 .container {
+    min-height: 100vh;
     background-image: url('./images/bg.svg'), url('./images/bgCabbage.svg'),
         linear-gradient(var(--bg-secondary-color) 342px, #ffffff 342px);
     background-repeat: no-repeat;
     background-position: top 222px left, top 85px left calc(100vw - 110px), top left;
     background-size: 120px 120px, 1334px 232px, 100%;
-
-    background-attachment: fixed;
 }
 
 .container-with-user {
@@ -98,8 +97,6 @@ input:focus {
     background-repeat: no-repeat;
     background-position: top 222px left, top left;
     background-size: 120px 120px, 100%;
-
-    background-attachment: fixed;
 }
 
 .main {
@@ -111,9 +108,10 @@ input:focus {
 
 @media screen and (min-width: 768px) {
     .container {
-        background-image: url('./images/bg.svg'), url('./images/bgCabbage.svg'),
+        background-image: url('./images/bg.svg'), url('./images/bgCabbage.svg'), url('./images/twoCabbages.svg'),
             linear-gradient(var(--bg-secondary-color) 582px, #ffffff 582px);
-        background-position: top 462px left, top 85px center, top left;
+        background-position: top 462px left, top 85px center, bottom 50px left 100px, top left;
+        background-size: 120px 120px, 1334px 232px, 183px 142px, 100%;
     }
 
     .main {
@@ -123,6 +121,10 @@ input:focus {
 }
 
 @media screen and (min-width: 1280px) {
+    .container {
+        background-position: top 462px left, top 85px center, top 650px left 230px, top left;
+    }
+
     .main {
         max-width: var(--desktop);
         padding: 0 16px;

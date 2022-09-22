@@ -1,3 +1,4 @@
+import { Tooltip } from 'components';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserBalance } from 'redux/userOperations';
@@ -8,6 +9,7 @@ const BalanceForm = () => {
     const transactions = useSelector(state => state.user.userData.transactions);
     const [balance, setBalance] = useState(`${userBalance.toFixed(2)} UAH`);
     const [enteredBalance, setEnteredBalance] = useState(userBalance);
+    const [isShowTooltip, setIsShowTooltip] = useState(!userBalance && !transactions.length);
     const dispath = useDispatch();
 
     const canChangeBalans = transactions.length === 0;
@@ -38,6 +40,10 @@ const BalanceForm = () => {
         e.target.balance.blur();
     };
 
+    const closeTooltip = () => {
+        setIsShowTooltip(false);
+    };
+
     return (
         <div className={s.container}>
             <p className={s.title}>Balance:</p>
@@ -46,6 +52,7 @@ const BalanceForm = () => {
                     className={s.balance}
                     name="balance"
                     value={balance}
+                    maxLength="100"
                     onChange={onChange}
                     onBlur={onBlur}
                     onFocus={onFocus}
@@ -55,6 +62,7 @@ const BalanceForm = () => {
                     Confirm
                 </button>
             </form>
+            {isShowTooltip && <Tooltip onClick={closeTooltip} />}
         </div>
     );
 };

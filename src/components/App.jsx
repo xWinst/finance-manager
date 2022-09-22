@@ -15,26 +15,20 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 export const App = () => {
     const [hasRefresh, setHasRefresh] = useState(false);
     const isLoading = useSelector(state => state.user.isLoading);
-    // const isLoggedIn = useSelector(state => state.user.isLoggedIn); ////
     const { pathname } = useLocation();
     const dispatch = useDispatch();
     const className = pathname === '/' ? 'container' : 'container-with-user';
+    const bgAttachment = pathname === '/expenses' || pathname === '/incomes' ? 'fixed' : 'scroll';
 
     if (!hasRefresh) {
         dispatch(refresh());
         setHasRefresh(true);
     }
-    // useEffect(() => {
-    //     dispatch(refresh());
-    // }, [dispatch]);
 
-    // dispatch(refresh());
-
-    // console.log('isLoggedIn: ', isLoggedIn);
     return isLoading ? (
         <Loader />
     ) : (
-        <div className={className}>
+        <div className={className} style={{ backgroundAttachment: bgAttachment }}>
             <Header />
             <main className="main">
                 <Suspense fallback={<Loader />}>

@@ -1,9 +1,7 @@
-import { Link, NavLink } from 'react-router-dom';
-import { Icon, BalanceForm, TransactionList } from 'components';
+import { Link } from 'react-router-dom';
+import { Icon, BalanceForm, TransactionList, Navigation } from 'components';
 import icons from 'images/icons.svg';
 import s from './TransactionInfo.module.css';
-
-const getActive = ({ isActive }) => (isActive ? s.active : s.navLink);
 
 const TransactionInfo = ({ onClick, text }) => {
     return (
@@ -20,14 +18,7 @@ const TransactionInfo = ({ onClick, text }) => {
             </div>
 
             <TransactionList />
-            <div className={s.nav}>
-                <NavLink className={getActive} to="/expenses">
-                    Expenses
-                </NavLink>
-                <NavLink className={getActive} to="/incomes">
-                    Incomes
-                </NavLink>
-            </div>
+            <Navigation />
         </>
     );
 };

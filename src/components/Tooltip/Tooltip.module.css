@@ -1,0 +1,45 @@
+.container {
+    position: absolute;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 160px;
+    background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
+    border-radius: 30px;
+}
+
+.icon {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    cursor: pointer;
+    stroke: var(--bg-color);
+    z-index: 1300;
+}
+
+.triangle {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    right: 70%;
+    top: -12px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #172d5d;
+}
+
+.icon:hover {
+    stroke: #ff751d;
+}
+
+.text {
+    display: block;
+    width: 230px;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    color: var(--bg-color);
+}

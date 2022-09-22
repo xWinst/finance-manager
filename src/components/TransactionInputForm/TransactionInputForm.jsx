@@ -89,24 +89,26 @@ const TransactionInputForm = ({ onClick, operation }) => {
                 {text}
             </p>
             <form className={s.form}>
-                <Calendar getDate={getDate} initial={initial} />
-                <input
-                    className={s.input}
-                    placeholder="Product description"
-                    value={description}
-                    onChange={changeDescription}
-                />
-                <Select categories={categories} getCategory={getCategory} initial={initial} />
-                <div className={s.priceContainer}>
+                <div className={s.formContainer}>
+                    <Calendar getDate={getDate} initial={initial} />
                     <input
-                        className={s.price}
-                        placeholder="00.00 UAH"
-                        value={amount}
-                        onChange={changeAmount}
-                        onBlur={blurAmount}
-                        onFocus={focusAmount}
+                        className={s.input}
+                        placeholder="Product description"
+                        value={description}
+                        onChange={changeDescription}
                     />
-                    <Icon className={s.calcIcon} href={`${icons}#calculator`} width="20" height="20" />
+                    <Select categories={categories} getCategory={getCategory} initial={initial} />
+                    <div className={s.priceContainer}>
+                        <input
+                            className={s.price}
+                            placeholder="00.00 UAH"
+                            value={amount}
+                            onChange={changeAmount}
+                            onBlur={blurAmount}
+                            onFocus={focusAmount}
+                        />
+                        <Icon className={s.calcIcon} href={`${icons}#calculator`} width="20" height="20" />
+                    </div>
                 </div>
                 <div className={s.btnsContainer}>
                     <Button text="Input" onClick={addTransaction} />

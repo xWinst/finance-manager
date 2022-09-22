@@ -53,3 +53,20 @@
     color: var(--main-color);
     background-color: var(--bg-link-color);
 }
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 184px;
+    }
+
+    .btn {
+        border-radius: 0;
+        border-top: 2px solid;
+        border-left: none;
+        border-color: var(--bg-link-color);
+    }
+
+    .list {
+        width: 99%;
+    }
+}
