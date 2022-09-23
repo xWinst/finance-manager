@@ -15,3 +15,4 @@ export { default as Chart } from './Chart/Chart';
 export { default as Modal } from './Modal/Modal';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as Navigation } from './Navigation/Navigation';
+export { default as Summary } from './Summary/Summary';

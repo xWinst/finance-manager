@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TransactionInputForm, TransactionInfo, BalanceForm, Icon, Navigation, TransactionList } from 'components';
+import {
+    TransactionInputForm,
+    TransactionInfo,
+    BalanceForm,
+    Icon,
+    Navigation,
+    TransactionList,
+    Summary,
+} from 'components';
 import { addExpense } from 'redux/transactionOperation';
 import { useWidth } from 'hooks/useWidth';
 import icons from 'images/icons.svg';
@@ -33,8 +41,9 @@ const Expenses = () => {
                 </Link>
             </div>
             <Navigation />
-            <TransactionInputForm onClick={toggleComponent} operation={addExpense} />
+            <TransactionInputForm operation={addExpense} />
             <TransactionList />
+            <Summary />
         </div>
     );
 };

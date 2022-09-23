@@ -6,6 +6,7 @@
     width: 100%;
     margin-top: 50px;
 }
+
 .transaction {
     position: relative;
     display: flex;
@@ -78,15 +79,32 @@
 
 @media screen and (min-width: 768px) {
     .list {
+        height: 362px;
         margin-top: 0;
         background-color: var(--bg-color);
+        overflow-y: scroll;
+        border: 2px solid var(--bg-link-color);
+    }
+
+    .list::-webkit-scrollbar {
+        width: 6px;
+        height: 0;
+    }
+
+    .list::-webkit-scrollbar-track {
+        background: var(--bg-link-color);
+    }
+
+    .list::-webkit-scrollbar-thumb {
+        background-color: var(--accent-color);
     }
 
     .container {
         width: 100%;
         padding: 40px;
-        border-radius: 0 0 30px;
+        border-radius: 0 0 30px 30px;
         background-color: var(--bg-color);
+        box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     }
 
     .header {
@@ -105,17 +123,117 @@
     }
 
     .dscrHeader {
-        composes: dateHeader;
-        width: 180px;
+        display: inline-block;
+        width: 175px;
+        text-align: start;
+        padding-left: 12px;
     }
 
     .categoryHeader {
-        composes: dateHeader;
+        display: inline-block;
         width: 180px;
+        text-align: start;
+        padding-left: 12px;
     }
 
     .sumHeader {
         composes: dateHeader;
         width: 174px;
+    }
+
+    .transaction {
+        margin-bottom: 0;
+        border-width: 2px;
+    }
+
+    .transaction:last-child {
+        border-bottom: none;
+    }
+
+    .info {
+        position: relative;
+    }
+
+    .date {
+        width: 90px;
+        margin-right: 0;
+        font-size: 12px;
+        text-align: center;
+        padding: 12px 0;
+        color: var(--main-color);
+    }
+
+    .text {
+        position: absolute;
+        left: 90px;
+        width: 175px;
+        margin-bottom: 0;
+        padding: 12px;
+        font-weight: 400;
+    }
+
+    .category {
+        position: absolute;
+        left: 265px;
+        width: 185px;
+        padding: 12px;
+        font-size: 12px;
+        color: var(--main-color);
+    }
+
+    .thumb {
+        margin-bottom: 0;
+    }
+
+    .amount {
+        width: 130px;
+        font-weight: 700;
+        text-align: end;
+        padding: 12px 40px 10px 0;
+    }
+
+    .icon {
+        right: 10px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        .container {
+            width: 1098px;
+            padding: 60px 320px 60px 32px;
+            margin-bottom: 40px;
+        }
+
+        .dateHeader {
+            width: 100px;
+        }
+
+        .dscrHeader {
+            width: 250px;
+        }
+
+        .sumHeader {
+            width: 180px;
+        }
+
+        .date {
+            width: 100px;
+        }
+
+        .text {
+            width: 250px;
+        }
+
+        .category {
+            left: 350px;
+        }
+
+        .amount {
+            width: 180px;
+            padding-right: 70px;
+        }
+
+        .icon {
+            right: 25px;
+        }
     }
 }

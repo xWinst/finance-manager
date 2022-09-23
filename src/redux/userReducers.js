@@ -17,9 +17,17 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         removeTransaction: (state, action) => {
-            state.userData.transactions = state.userData.transactions.filter(({ _id }) => _id !== action.payload);
-            state.expenses.expenses = state.expenses.expenses.filter(({ _id }) => _id !== action.payload);
-            state.incomes.incomes = state.incomes.incomes.filter(({ _id }) => _id !== action.payload);
+            const { id, type, date, amount } = action.payload;
+            state.userData.transactions = state.userData.transactions.filter(({ _id }) => _id !== id);
+            state.expenses.expenses = state.expenses.expenses.filter(({ _id }) => _id !== id);
+            state.incomes.incomes = state.incomes.incomes.filter(({ _id }) => _id !== id);
+            state[type].monthsStats[date] -= amount;
+        },
+
+        changeMonthsStats: (state, action) => {
+            const { type, date, amount } = action.payload;
+            if (state[type].monthsStats[date] === 'N/А') state[type].monthsStats[date] = amount;
+            else state[type].monthsStats[date] += amount;
         },
     },
     extraReducers: {
@@ -147,6 +155,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { removeTransaction } = userSlice.actions;
+export const { removeTransaction, changeMonthsStats } = userSlice.actions;
 
 export default userSlice.reducer;

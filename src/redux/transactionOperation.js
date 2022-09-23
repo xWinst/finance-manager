@@ -37,12 +37,14 @@ export const getIncomes = createAsyncThunk('transaction/incomes', async (_, { re
     }
 });
 
-export const deleteTransaction = createAsyncThunk('transaction/delete', async (id, { rejectWithValue }) => {
-    try {
-        const { data } = await axios.delete(`/transaction/${id}`);
-        // dispatch(removeTransaction(id));
-        return data;
-    } catch (error) {
-        return rejectWithValue(error);
+export const deleteTransaction = createAsyncThunk(
+    'transaction/delete',
+    async (transactionData, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.delete(`/transaction/${transactionData.id}`);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error);
+        }
     }
-});
+);

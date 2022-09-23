@@ -1,0 +1,39 @@
+.list {
+    width: 230px;
+    margin: 40px 0;
+    background: var(--bg-link-color);
+    border-radius: 19px 19px 19px 0;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.titleItem {
+    padding: 12px;
+}
+
+.title {
+    font-weight: 700;
+    text-align: center;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-top: 2px solid var(--bg-color);
+    color: var(--main-color);
+}
+
+.zeroItem {
+    padding: 12px;
+    text-align: center;
+}
+
+@media screen and (min-width: 1280px) {
+    .list {
+        position: absolute;
+        right: 106px;
+        top: 328px;
+    }
+}

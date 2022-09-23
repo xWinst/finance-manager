@@ -14,19 +14,31 @@ const Chart = ({ chartData }) => {
     return (
         <ul className={s.list}>
             {array.map(({ category, price }, index) => (
-                <li key={category}>
-                    <div className={s.description} style={{ width: (price / maxPrice) * Math.min(width - 40, 440) }}>
+                <li className={s.item} key={category}>
+                    <div
+                        className={s.description}
+                        style={width < 768 ? { width: (price / maxPrice) * Math.min(width - 40, 440) } : {}}
+                    >
                         <p className={s.category}>{category}&nbsp;</p>
                         <p className={s.price}>{formated(price)}&nbsp;&#8372;</p>
                     </div>
                     <div
-                        style={{
-                            width: (price / maxPrice) * Math.min(width - 40, 440),
-                            height: 15,
-                            background: index % 3 === 0 ? '#FF751D' : '#FED9BF',
-                            borderTopRightRadius: 10,
-                            borderBottomRightRadius: 10,
-                        }}
+                        className={s.chart}
+                        style={
+                            width < 768
+                                ? {
+                                      width: (price / maxPrice) * Math.min(width - 40, 440),
+                                      height: 15,
+                                      background: index % 3 === 0 ? '#FF751D' : '#FED9BF',
+                                      borderRadius: '0 10px 10px 0',
+                                  }
+                                : {
+                                      width: 38,
+                                      height: (price / maxPrice) * 328,
+                                      background: index % 3 === 0 ? '#FF751D' : '#FED9BF',
+                                      borderRadius: '10px 10px 0 0',
+                                  }
+                        }
                     ></div>
                 </li>
             ))}

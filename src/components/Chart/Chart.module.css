@@ -13,3 +13,57 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media screen and (min-width: 768px) {
+    .list {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 30px;
+        padding: 20px 33px 44px;
+        background-image: url(../../images/bgChart.svg);
+        background-size: 638px 322px;
+        background-repeat: no-repeat;
+        background-position: bottom 42px left 33px;
+        box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+        border-radius: 30px;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        width: 70px;
+    }
+
+    .category {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        bottom: -25px;
+        font-size: 12px;
+    }
+
+    .price {
+        font-size: 12px;
+    }
+
+    .description {
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .list {
+        padding: 20px 120px 44px;
+        background-image: url(../../images/bgChart.svg), url(../../images/bgChart.svg);
+        background-size: 638px 322px, 638px 322px;
+        background-position: bottom 42px left 140px, bottom 42px right 140px;
+    }
+
+    .item {
+        width: 80px;
+    }
+}

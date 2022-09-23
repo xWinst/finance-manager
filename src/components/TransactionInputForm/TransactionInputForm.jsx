@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Calendar, Select, Button, Icon } from 'components';
+import { changeMonthsStats } from 'redux/userReducers';
 import allCategories from 'database/categories';
 import message from 'helpers/Message';
+import months from 'database/months';
 import icons from 'images/icons.svg';
 import s from './TransactionInputForm.module.css';
+
+const monthKeys = Object.keys(months);
 
 const TransactionInputForm = ({ onClick, operation }) => {
     const [date, setDate] = useState();
@@ -70,6 +74,9 @@ const TransactionInputForm = ({ onClick, operation }) => {
             return;
         }
         dispatch(operation(data));
+        dispatch(
+            changeMonthsStats({ ...data, type: text.toLowerCase(), date: monthKeys[data.date.split('-')[1] - 1] })
+        );
         message.sucsess('Transaction added successfully');
         reset();
     };
@@ -101,7 +108,7 @@ const TransactionInputForm = ({ onClick, operation }) => {
                     <div className={s.priceContainer}>
                         <input
                             className={s.price}
-                            placeholder="00.00 UAH"
+                            placeholder="0.00 UAH"
                             value={amount}
                             onChange={changeAmount}
                             onBlur={blurAmount}

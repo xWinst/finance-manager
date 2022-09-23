@@ -4,13 +4,16 @@ import { useLocation } from 'react-router-dom';
 import { deleteTransaction } from 'redux/transactionOperation';
 import { removeTransaction } from 'redux/userReducers';
 import { Icon, Modal } from 'components';
+import months from 'database/months';
 import icons from 'images/icons.svg';
 import s from './TransactionList.module.css';
 import allCategories from 'database/categories';
 
+const monthKeys = Object.keys(months);
+
 const TransactionList = () => {
     const [isShowModal, setIsShowModal] = useState(false);
-    const [id, setId] = useState();
+    const [data, setData] = useState();
     const { pathname } = useLocation();
     const dispatch = useDispatch();
 
@@ -36,8 +39,8 @@ const TransactionList = () => {
         return `${array[2]}.${array[1]}.${array[0]}`;
     };
 
-    const delTransaction = id => {
-        setId(id);
+    const delTransaction = data => {
+        setData(data);
         setIsShowModal(true);
     };
 
@@ -46,8 +49,8 @@ const TransactionList = () => {
     };
 
     const confirm = () => {
-        dispatch(deleteTransaction(id));
-        dispatch(removeTransaction(id));
+        dispatch(deleteTransaction(data));
+        dispatch(removeTransaction(data));
         setIsShowModal(false);
     };
 
@@ -74,7 +77,17 @@ const TransactionList = () => {
                         <p className={s.amount} style={{ color: `${color}` }}>
                             {sign + transaction.amount.toFixed(2)} <span>&nbsp;&#8372;</span>
                         </p>
-                        <button className={s.icon} onClick={() => delTransaction(transaction._id)}>
+                        <button
+                            className={s.icon}
+                            onClick={() =>
+                                delTransaction({
+                                    id: transaction._id,
+                                    amount: transaction.amount,
+                                    date: monthKeys[transaction.date.split('-')[1] - 1],
+                                    type: pathname.slice(1),
+                                })
+                            }
+                        >
                             <Icon href={`${icons}#basket`} width="18" height="18" />
                         </button>
                     </li>

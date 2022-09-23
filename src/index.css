@@ -49,6 +49,9 @@ body {
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--bg-link-color);
 }
 
 img {
@@ -112,6 +115,14 @@ input:focus {
             linear-gradient(var(--bg-secondary-color) 582px, #ffffff 582px);
         background-position: top 462px left, top 85px center, bottom 50px left 100px, top left;
         background-size: 120px 120px, 1334px 232px, 183px 142px, 100%;
+    }
+
+    .container-with-user {
+        background-image: url('./images/bg.svg'), url('./images/twoCabbages.svg'),
+            linear-gradient(var(--bg-secondary-color) 342px, #ffffff 342px);
+        background-repeat: no-repeat;
+        background-position: top 222px left, bottom 50px right 100px, top left;
+        background-size: 120px 120px, 183px 142px, 100%;
     }
 
     .main {

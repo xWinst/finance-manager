@@ -10,8 +10,6 @@ const Incomes = lazy(() => import('pages/Incomes/Incomes'));
 const Reports = lazy(() => import('pages/Reports/Reports'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 
-// let render = 0;
-
 export const App = () => {
     const [hasRefresh, setHasRefresh] = useState(false);
     const isLoading = useSelector(state => state.user.isLoading);

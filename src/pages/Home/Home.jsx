@@ -3,7 +3,6 @@ import { LoginForm } from 'components';
 import s from '../index.module.css';
 
 const Home = () => {
-    console.log('WHAT??');
     return (
         <section className={s.hero}>
             <div className={s.thumb}>

@@ -117,7 +117,7 @@
 
     .form {
         max-width: none;
-        padding: 24px 40px;
+        padding: 24px 40px 0;
     }
 
     .formContainer {
@@ -155,5 +155,20 @@
 
     .btnsContainer {
         margin-top: 30px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        .form {
+            flex-direction: row;
+            padding: 24px 32px 0;
+        }
+
+        .btnsContainer {
+            margin-top: 0;
+        }
+
+        .input {
+            width: 230px;
+        }
     }
 }

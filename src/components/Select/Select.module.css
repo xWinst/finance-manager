@@ -69,4 +69,10 @@
     .list {
         width: 99%;
     }
+
+    @media screen and (min-width: 1280px) {
+        .container {
+            width: 220px;
+        }
+    }
 }

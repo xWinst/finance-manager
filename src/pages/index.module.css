@@ -59,10 +59,19 @@
 }
 
 /* ======= Reports Page ======== */
+
+.reportsContainer {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .goBack {
     position: absolute;
-    top: 78px;
-    left: 20px;
+    top: 22px;
+    left: 0;
     border: none;
     background-color: transparent;
     border-radius: 50%;
@@ -76,15 +85,21 @@
     --arrow-color: var(--bg-color);
 }
 
+.linkText {
+    display: none;
+}
+
 .text {
     margin-top: 30px;
     margin-bottom: 4px;
     color: var(--main-color);
+    text-align: center;
 }
 
 .period {
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     margin-bottom: 30px;
 }
 
@@ -104,11 +119,11 @@
     font-weight: 500;
     margin-bottom: 8px;
     color: var(--main-color);
+    text-align: center;
 }
 
 .balance {
     width: 183px;
-    /* height: 44px; */
     margin-bottom: 30px;
     padding: 13px;
     font-weight: 700;
@@ -132,6 +147,7 @@
     border-radius: 20px;
     color: var(--main-color);
 }
+
 .total {
     width: 50%;
     text-align: center;
@@ -150,10 +166,15 @@
     margin-top: 5px;
 }
 
+.typeBalanceContainer {
+    display: flex;
+    justify-content: center;
+}
+
 .item {
     composes: month;
     padding: 0 20px;
-    margin-bottom: 20px;
+    margin-top: 3px;
 }
 
 .ad {
@@ -174,19 +195,14 @@
 
     background-color: var(--bg-color);
     border-radius: 20px;
-    /* justify-content: space-between; */
-    /* gap: 5px; */
 }
 
 .category {
-    /* width: 105px; */
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     padding: 20px 0;
     align-items: center;
-    /* margin-bottom: 20px; */
     border-bottom: 1px solid var(--separate-line-color);
 }
 
@@ -203,7 +219,6 @@
 }
 
 .price {
-    /* text-align: center; */
     margin-bottom: 10px;
 }
 
@@ -264,6 +279,106 @@
     .icon {
         fill: currentColor;
     }
+
+    .reportsContainer {
+        margin-top: 56px;
+    }
+
+    .linkText {
+        position: absolute;
+        top: 28px;
+        left: 45px;
+        display: block;
+        color: var(--main-color);
+    }
+
+    .header {
+        margin-left: calc(100% - 472px);
+        margin-top: 40px;
+        margin-bottom: 32px;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .text {
+        margin-top: 0;
+    }
+
+    .period {
+        margin-bottom: 0;
+    }
+
+    .balanceContainer {
+        display: flex;
+        gap: 20px;
+        margin-right: 100px;
+        align-items: center;
+    }
+
+    .topic {
+        margin-bottom: 0;
+    }
+
+    .balance {
+        margin-bottom: 0;
+    }
+
+    .totalThumb {
+        padding: 17px;
+        max-width: none;
+    }
+
+    .total {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 15px;
+        padding: 0 20px;
+    }
+
+    .total:last-child::before {
+        height: 36px;
+    }
+
+    .total:last-child {
+        justify-content: start;
+    }
+
+    .value {
+        margin-top: 0;
+    }
+
+    .iconsContainer {
+        width: 100%;
+        background-color: var(--bg-color);
+        margin-bottom: 32px;
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    }
+
+    .ad {
+        text-align: center;
+    }
+
+    .categories {
+        margin: 0;
+        max-width: none;
+    }
+
+    .category {
+        border-bottom: none;
+    }
+
+    .categoryName {
+        max-width: none;
+        width: 110px;
+    }
+
+    .chartsContainer {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 1280px) {
@@ -278,5 +393,18 @@
 
     .slogan {
         margin: 0 72px;
+    }
+
+    .container {
+        position: relative;
+        padding: 0 75px;
+    }
+
+    .categories {
+        padding: 0 120px;
+    }
+
+    .categoryName {
+        width: 140px;
     }
 }
