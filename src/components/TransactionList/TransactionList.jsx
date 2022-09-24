@@ -20,12 +20,12 @@ const TransactionList = () => {
     let selector, color, sign, categories;
 
     if (pathname === '/expenses') {
-        selector = state => state.user.expenses.expenses;
+        selector = state => state.user.expenses?.expenses;
         color = '#e7192e';
         sign = '- ';
         categories = allCategories.expenses;
     } else {
-        selector = state => state.user.incomes.incomes;
+        selector = state => state.user.incomes?.incomes;
         color = '#407946';
         sign = '';
         categories = allCategories.incomes;

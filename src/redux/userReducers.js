@@ -81,7 +81,7 @@ const userSlice = createSlice({
         [refresh.fulfilled]: (state, action) => {
             state.refreshToken = action.payload.newRefreshToken;
             state.sid = action.payload.newSid;
-            state.isLoggedIn = true;
+            // state.isLoggedIn = true;
         },
 
         [refresh.rejected]: (state, action) => {
