@@ -61,7 +61,7 @@
 
     .btn {
         border-radius: 0;
-        border-top: 2px solid var(--bg-color);
+        border-top: 2px solid var(--bg-link-color);
         border-left: none;
         border-color: var(--bg-link-color);
     }
