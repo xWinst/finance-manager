@@ -18,6 +18,10 @@
 
     --box-shadow: 1px 3px 5px #aab2c533;
     --transition: background-color 300ms ease, color 300ms ease;
+
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1280px;
 }
 
 body {
